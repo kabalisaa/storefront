@@ -6,6 +6,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 # Create your models here.
 class Tag(models.Model):
     label = models.CharField( max_length= 255)
+    def __str__(self) -> str:
+        return self.label
     
 class TagggedItem(models.Model):
     #WHAT TAG TO APPLIE TO WHICH OBJECT
@@ -15,3 +17,5 @@ class TagggedItem(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey()
+    def __str__(self) -> str:
+        return self.tag

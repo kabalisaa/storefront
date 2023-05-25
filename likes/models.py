@@ -9,3 +9,9 @@ class LikedItem(models.Model):
     content_type=models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey()
+    
+    def __str__(self) -> str:
+        return self.user
+    
+    class Meta:
+        ordering = ['content_type']
