@@ -20,6 +20,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'price', 'inventory_status']
     list_editable = ['price']  #what you can edit 
     list_per_page = 10    #how many can go on the page
+    list_filter = ['last_update']
     
     @admin.display(ordering= 'inventory')
     def inventory_status(self, product):
@@ -36,6 +37,7 @@ class CustomerAdmin(admin.ModelAdmin):
     list_editable = ['membership']
     list_per_page = 5
     ordering = ['first_name', 'last_name']
+    search_fields = ['first_name__istartswith', 'last_name__istartswith']
 #admin.site.register(models.Customer)
 
 admin.site.register(models.Order)
