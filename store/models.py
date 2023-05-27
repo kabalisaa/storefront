@@ -82,12 +82,13 @@ class Order(models.Model):
         return self.payment_status
     
 class OrderItem(models.Model):
+    orderItemName = models.CharField(max_length=255, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.PROTECT)
     product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name='orderitems')
     quantity = models.PositiveSmallIntegerField()
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
     def __str__(self) -> str:
-        return self.order
+        return self.orderItemName
     
     
     
@@ -100,14 +101,16 @@ class Address (models.Model):
         return self.street
 
 class Cart(models.Model):
+    cartname = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
-        return self.created_at
+        return self.cartname
 
 
 class CartItem(models.Model):
+    cartnameitem = models.CharField(max_length=255, null=True, blank=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE) 
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField()
     def __str__(self) -> str:
-        return self.cart
+        return self.cartnameitem

@@ -10,6 +10,7 @@ class Tag(models.Model):
         return self.label
     
 class TagggedItem(models.Model):
+    tagnameitem = models.CharField(max_length=255, null=True, blank=True)
     #WHAT TAG TO APPLIE TO WHICH OBJECT
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     #TYPE(PRODUCT, VIDEO...)
@@ -18,4 +19,4 @@ class TagggedItem(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey()
     def __str__(self) -> str:
-        return self.tag
+        return self.tagnameitem
